@@ -18,6 +18,7 @@ Sys.sleep(3)
 # install.packages("e1071")
 # install.packages("tidyr")
 
+library(tidyr)
 library(caret)
 library(e1071)
 
