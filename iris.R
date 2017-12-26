@@ -5,6 +5,11 @@
 # iris.csv and iris.R
 #
 # Minor fixes added by Carlos Crosetti (carlos.crosetti@gmail.com)
+#
+# 12/25/2017 - added clc() function to clear the console
+
+clc <- function() cat(rep("\n",50))
+clc()
 
 setwd("C:/Users/Carlos/OneDrive/DS/2017 Iris Template")
 getwd()
@@ -29,6 +34,8 @@ filename <- "iris.csv"
 
 # load the CSV file from the local directory
 dataset <- read.csv(filename, header=FALSE)
+
+# TODO limit the data set to some X rows to develop the model with less data
 
 # set the column names in the dataset
 colnames(dataset) <- c("Sepal.Length","Sepal.Width","Petal.Length","Petal.Width","Species")
@@ -58,8 +65,13 @@ levels(dataset$Species)
 percentage <- prop.table(table(dataset$Species)) * 100
 cbind(freq=table(dataset$Species), percentage=percentage)
 
+start_time <- Sys.time()
+
 # summarize attribute distributions
 summary(dataset)
+
+end_time <- Sys.time()
+end_time - start_time
 
 Sys.sleep(3)
 
@@ -96,6 +108,8 @@ featurePlot(x=x, y=y, plot="density", scales=scales)
 
 Sys.sleep(3)
 
+start_time <- Sys.time()
+
 # Run algorithms using 10-fold cross validation
 control <- trainControl(method="cv", number=10)
 metric <- "Accuracy"
@@ -121,6 +135,10 @@ fit.rf <- train(Species~., data=dataset, method="rf", metric=metric, trControl=c
 # summarize accuracy of models
 results <- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
 summary(results)
+
+print("Time spent in training")
+end_time <- Sys.time()
+end_time - start_time
 
 Sys.sleep(3)
 
