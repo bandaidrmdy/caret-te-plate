@@ -155,3 +155,5 @@ Sys.sleep(3)
 # estimate skill of LDA on the validation dataset
 predictions <- predict(fit.lda, validation)
 confusionMatrix(predictions, validation$Species)
+
+# end of iris.R script
