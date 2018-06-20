@@ -4,9 +4,13 @@
 # WARNING set the directory below to the place where you downloaded
 # iris.csv and iris.R
 #
-# Minor fixes added by Carlos Crosetti (carlos.crosetti@gmail.com)
+# Minor fixes added by Carlos Crosetti (carlos.crosetti@outlook.com)
 #
 # 12/25/2017 - added clc() function to clear the console
+# 06/17/2018 - added packages randomForest, lattice and ellipse
+# 
+# Tested with R 3.5.0
+#
 
 clc <- function() cat(rep("\n",50))
 clc()
@@ -19,13 +23,19 @@ Sys.sleep(3)
 # WARNING before running this script make sure you installed these
 # three packages from the console
 
-# install.packages("caret", dependencies=c("Depends", "Suggests"))
+# install.packages("caret")
 # install.packages("e1071")
 # install.packages("tidyr")
+# install.packages("randomForest")
+# install.packages("lattice")
+# install.packages("ellipse")
 
 library(tidyr)
 library(caret)
 library(e1071)
+
+# this allows to scroll the graphics device
+windows(record=TRUE)
 
 Sys.sleep(3)
 
